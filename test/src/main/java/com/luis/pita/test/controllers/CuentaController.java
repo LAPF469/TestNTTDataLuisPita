@@ -3,8 +3,12 @@ package com.luis.pita.test.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.luis.pita.test.exceptions.ResourceNotFoundException;
 import com.luis.pita.test.models.ClienteModel;
 import com.luis.pita.test.models.CuentaModel;
+import com.luis.pita.test.models.ErrorResponse;
 import com.luis.pita.test.servicies.ClienteService;
 import com.luis.pita.test.servicies.CuentaService;
 
@@ -55,5 +61,17 @@ public class CuentaController {
     @DeleteMapping("/{id}")
     public void deleteCuenta(@PathVariable Long id) {
         cuentaService.delete(id);
+    }
+    
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse("NOT_FOUND", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException ex) {
+        ErrorResponse error = new ErrorResponse("BAD_REQUEST", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
