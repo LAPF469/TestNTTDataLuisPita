@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "9048fb32-d20f-44f7-917f-7c8a25829fe1",
+		"name": "NTT Data Test Luis Pita",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12884872"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Consultar todos los clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/cuentas"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/clientes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contrasenia\": \"1234\",\r\n  \"estado\": true,\r\n  \"persona\": {\r\n    \"personaId\": 0,\r\n    \"nombre\": \"Jose Lema\",\r\n    \"genero\": \"\",\r\n    \"edad\": null,\r\n    \"identificacion\": \"\",\r\n    \"direccion\": \"Otavalo sn y principal\",\r\n    \"telefono\": \"098254785\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"contrasenia\": \"123456\",\r\n    \"estado\": true,\r\n    \"persona\": {\r\n        \"personaId\": 1,\r\n        \"nombre\": \"Juan Lena Actualizado\",\r\n        \"genero\": \"\",\r\n        \"edad\": null,\r\n        \"identificacion\": \"\",\r\n        \"direccion\": \"Otavalo sn y principal  Actualizado\",\r\n        \"telefono\": \"098254787\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/clientes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/clientes/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "Consultar todas las cuentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/cuentas"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar cuenta por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/cuentas/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cuenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroCuenta\": 1234568,\r\n    \"tipoCuenta\": \"ahorro\",\r\n    \"saldoInicial\": 123.46,\r\n    \"estado\": true,\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/cuentas"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroCuenta\": \"159263\",\r\n    \"tipoCuenta\": \"ahorro\",\r\n    \"saldoInicial\": 123.46,\r\n    \"estado\": false,\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/cuentas/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/cuentas/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimiento",
+			"item": [
+				{
+					"name": "Consultar todos los movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/movimientos"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar movimientos por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/movimientos/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Registro de movimientos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoMovimiento\": \"DEPOSITO\",\r\n    \"valor\": -300,\r\n    \"cuenta\": {\r\n        \"id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/movimientos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "Consulta estado de cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes/estadoCuenta?fechaInicio=2024-08-01&fechaFin=2024-08-15&clienteId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes",
+								"estadoCuenta"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-08-01"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-08-15"
+								},
+								{
+									"key": "clienteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

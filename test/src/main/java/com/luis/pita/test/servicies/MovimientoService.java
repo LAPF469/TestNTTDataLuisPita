@@ -1,5 +1,6 @@
 package com.luis.pita.test.servicies;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import com.luis.pita.test.repositories.MovimientoRepository;
 
 @Service
 public class MovimientoService {
+
     @Autowired
     private MovimientoRepository movimientoRepository;
 
@@ -31,7 +33,7 @@ public class MovimientoService {
     public MovimientoModel save(MovimientoModel movimiento) {
         CuentaModel cuenta = cuentaService.findById(movimiento.getCuenta().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Cuenta con id " + movimiento.getCuenta().getId() + " no fue encontrada."));
+                "Cuenta con id " + movimiento.getCuenta().getId() + " no fue encontrada."));
 
         if (cuenta.getSaldoInicial() + movimiento.getValor() < 0) {
             throw new SaldoInsuficienteException("Saldo no disponible para realizar esta transacción.");
@@ -47,4 +49,9 @@ public class MovimientoService {
     public void delete(Long id) {
         movimientoRepository.deleteById(id);
     }
+
+    public List<MovimientoModel> findByCuentaAndFechaBetween(CuentaModel cuenta, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        return movimientoRepository.findByCuentaAndFechaBetween(cuenta, fechaInicio, fechaFin);
+    }
+
 }

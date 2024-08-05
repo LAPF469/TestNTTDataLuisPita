@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luis.pita.test.models.ClienteModel;
 import com.luis.pita.test.models.CuentaModel;
 import com.luis.pita.test.repositories.CuentaRepository;
 
@@ -20,6 +21,10 @@ public class CuentaService {
 
     public Optional<CuentaModel> findById(Long id) {
         return cuentaRepository.findById(id);
+    }
+
+    public List<CuentaModel> findByCliente(ClienteModel cliente) {
+        return cuentaRepository.findByCliente(cliente);
     }
 
     public CuentaModel save(CuentaModel cuenta) {
